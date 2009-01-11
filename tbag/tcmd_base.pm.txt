@@ -1,0 +1,33 @@
+
+
+
+#######
+# The --#TCMD-- Command
+#
+#
+
+use pms::tmsg;
+use pms::argverify;
+
+tmsg "--#TCMD-- Command loading", -2;
+
+#...
+
+
+sub tcmd_--TCMD--
+{
+	tmsg "TC --#TCMD-- called with @_";
+
+}
+
+
+
+
+
+
+
+
+
+
+#return true to please perl
+;1;
