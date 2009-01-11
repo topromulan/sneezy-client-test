@@ -1,12 +1,21 @@
 
 Turtle Shell Testing Copy
+git@github.com:topromulan/sneezy-client-test.git
 
-to execute and test the very fibers which make up
-this copy of the sneezymud perl telnet turtleshell,
+Dale R. Anderson
+lime.dale@gmail.com
 
-1 $ tar jxf ts-[numbers].tar.bzip2
-2 $ cd ts-[numbers]
-3 $ perl -w veryfibers.pl
+This is the work in progress modularized SneezyMUD client.
 
-You are probably already done with step 2, almost there!
+Required perl Modules:
+ Net/Telnet
+ Term/ReadKey
+
+It also contains a copy of the original monolithic script version for reference: 
+oldversion_ref_copy.pl
+
+For testing, launch testserver.sh in one window and run trycode.bat in another window.
+
+For live testing and connect to the MUD execute ./trycode.bat live
+
 
