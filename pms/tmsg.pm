@@ -7,12 +7,19 @@
 
 use strict;
 
-print "messaging initialization\n";
 
 my $msg_squelch = -2;
 my $msg_default = 1;
 my $msg_verbose = 1;
 my $msg_hard = 0;
+
+my $msg_stderr_bar = 2;
+
+print "Turtle messaging initialization\n";
+
+print " - The bar for STDERR is set at: $msg_stderr_bar\n";
+print " - The user squelch is set at: $msg_squelch\n";
+
 ## tmsg 
 # string
 # volume
@@ -29,6 +36,8 @@ sub tmsg {
 	my $vol=$msg_default;
 	$vol = $_[1] if defined($_[1]);
 
+	## op = OutPut
+	#
 	my $op = "#";
 
 	$op .= sprintf(" %2d #", $vol) if $msg_verbose;
@@ -40,11 +49,35 @@ sub tmsg {
 
 	$op .= $str;
 
-	print "\n" if $msg_hard;
+	tmsg_dest_print ("\n", $vol) if $msg_hard;
 
 	if($vol > $msg_squelch) {
-		print "$op\n";
+		tmsg_dest_print ("$op\n", $vol);
 	}
+
+}
+
+## 
+#
+# tmsg_dest_print()
+#
+#   A print command that may duplicate the print to stderr if 
+#    the message level is above the $msg_stderr_bar
+#
+#   pretty lax 'cause only use is above in tmsg
+
+sub tmsg_dest_print {
+	
+	my $str=$_[0];
+	my $high=$_[1];
+
+	my $err=0;
+	
+	$err=1 if $high > $msg_stderr_bar;
+
+	print $str;
+
+	print STDERR $str if $err;
 
 }
 

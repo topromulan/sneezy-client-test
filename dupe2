@@ -9,7 +9,7 @@ read
 
 echo Stream editing for qualitee...
 
-cat base-tbag.pm | sed "s//$1/" >  tbag/$1.pm
+cat base-tbag.pm | sed "s/YourFunctionHere/$1/" >  tbag/$1.pm
 
 
 
