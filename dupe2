@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo Teabag dupe.
+
+echo will copy base-tbag.pm to tbag/$1.pm and vi that file
+echo hit [enter] to proceed
+read
+
+
+echo Stream editing for qualitee...
+
+cat base-tbag.pm | sed "s//$1/" >  tbag/$1.pm
+
+
+
+
+sleep 1
+
+
+
+vi tbag/$1.pm
+
