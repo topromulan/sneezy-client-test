@@ -37,3 +37,10 @@ Scalar value @_[1] better written as $_[1] at tbag/alias.pm line 49.
 #  3 #Entering main program loop.
 #  5 # bih() explorer adding one block!
 #  5 # bih() explorer adding one block!
+#  3 #Hardcoded ^C quit - ok!
+#  3 #Quitting now..
+String found where operator expected at pms/tmsg.pm line 23, near "tmsg "INIT:\nhello\ngoodbye""
+	(Do you need to predeclare tmsg?)
+syntax error at pms/tmsg.pm line 23, near "tmsg "INIT:\nhello\ngoodbye""
+Compilation failed in require at veryfibers.pl line 32.
+BEGIN failed--compilation aborted at veryfibers.pl line 32.

@@ -54,7 +54,13 @@ use pms::cmdlineargs;
 
 use pms::quit;
 
-tmsg "TurtleShell version $turtlever firing up..",  0;
+tmsg 
+	"\n\nTurtleShell version $turtlever firing up..\n" .
+	"-- This is a test of tmsg multi-line handling.\n" .
+	"\n" .
+	"Output all pretty? OK, let's play!\n\n\n" ,
+	1;
+	
 
 ###############
 #

@@ -20,6 +20,7 @@ print "Turtle messaging initialization\n";
 print " - The bar for STDERR is set at: $msg_stderr_bar\n";
 print " - The user squelch is set at: $msg_squelch\n";
 
+
 ## tmsg 
 # string
 # volume
@@ -46,6 +47,9 @@ sub tmsg {
 	if($str =~ m/^[a-z]/) {
 		$op .= " ";
 	}
+
+	#if multi-line..
+	$str =~ s/\n/\n# -- # /g;
 
 	$op .= $str;
 
