@@ -16,6 +16,8 @@ oldversion_ref_copy.pl
 
 For testing, launch testserver.sh in one window and run trycode.bat in another window.
 
+Screenshot.png shows an example of using testserver.sh for testing
+
 For live testing and connect to the MUD execute ./trycode.bat live
 
 
