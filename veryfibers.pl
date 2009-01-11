@@ -46,7 +46,11 @@ use pms::english_to_hotkey;
 
 use pms::turtle_processor;
 use pms::turtle_commander;
-eval tcmd_scan();		#(returns the list of modules to load)
+
+my $tcmds = tcmd_scan();		#(returns the list of modules to load)
+
+tmsg "Loading these fine Turtle Commands:\n$tcmds\n\n", 1;
+eval $tcmds;
 
 use pms::sneezy;
 
@@ -103,8 +107,15 @@ tmsg "TurtleShell v. $turtlever";
 tmsg "Setting ReadMode to 4..", -1;
 ReadMode 4;
 
-
 tmsg "Entering main program loop.", 3;
+
+
+tcmd_help();
+tcmd_bihex([""]);
+
+
+
+
 
 my $sneezy_in;
 my $sneezy_out;

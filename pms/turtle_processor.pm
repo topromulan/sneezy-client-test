@@ -71,7 +71,11 @@ sub turtle_processor {
 
 	# Stumping me for 3 years now! Daikaiju DIE!
 
-	eval "tcmd_$turtleword \@turtleargs" || die;
+	# Go to main program level to evaluate
+	
+	tmsg "Evaluating $turtleword \@turtleargs", 3;
+	eval "tcmd_$turtleword(\@turtleargs)";
+
 
 		
 
