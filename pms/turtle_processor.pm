@@ -46,7 +46,7 @@ sub turtle_processor {
 	
 	#we define these variables to split up $arg into:
 	my $turtleword; 
-	my @turtleargs;
+	my @turtleargs = [];
 
 	#Pluck out the turtle word
 	$arg =~ m/^#[\s\t]*(\w+)\s*([^\s]*.*)/;  
