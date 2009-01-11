@@ -11,9 +11,16 @@ tmsg "bihex init", -2;
 
 #...
 
-sub bihex {
+sub tcmd_bihex {
 
-	return unless argverify(\@_, 0, "your sub error message if bad args are passed");
+	return unless argverify(\@_, 1, "bihex takes one argument");
+
+	tmsg "The block input handler (bih) explorer! (bihex)", 1;
+
+	#we're going to also dump this to std err as well as tmsg
+	# and improve tmsg handling of multi-lines
+
+
 
 
 
