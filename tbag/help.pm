@@ -24,7 +24,7 @@ sub tcmd_help
 
 	I think we should cat a file!\n
 	
-	";
+	\n";
 
 }
 

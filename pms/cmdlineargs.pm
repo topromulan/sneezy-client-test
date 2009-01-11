@@ -24,11 +24,17 @@ sub cmdlineargs {
 	my $startup = shift;
 	my %arghash = ();
 
-	my $optionword = "null";
+	#my $optionword = "null";
+
+	# undefine optionword..
+	#  the if statement in the loop will use undefined to handle
+	#  arguments beginning with - properly.
+	
+	my $optionword = undef;
 
 	foreach my $argument (@_) {
 
-		if ($argument =~ m/\-(\S+)/) {
+		if ($argument =~ m/\-(\S+)/ && !defined($optionword)) {
 
 			$optionword = $1; # if -var save to optionword to use as key for next arg
 
@@ -37,6 +43,8 @@ sub cmdlineargs {
 			$arghash{$optionword} .= " " if defined($arghash{$optionword});
 
 			$arghash{$optionword} .= $argument; # use previous arg, -var, as key and this arg as value
+
+			undef $optionword;
 
 		}
 

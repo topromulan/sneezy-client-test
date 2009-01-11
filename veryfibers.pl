@@ -46,7 +46,7 @@ use pms::english_to_hotkey;
 
 use pms::turtle_processor;
 use pms::turtle_commander;
-eval tcmd_scan();
+eval tcmd_scan();		#(returns the list of modules to load)
 
 use pms::sneezy;
 
@@ -56,12 +56,17 @@ use pms::quit;
 
 tmsg "TurtleShell version $turtlever firing up..",  0;
 
+###############
+#
+# startup and commandline parse.
+#
+
 my %startuphash = (
-	login => "sneezy.login",
-	server => "sneezy.saw.net",
-	port => "7900",
-	common => "turtleshell.common",
-	squelch => 0
+	'login' => "sneezy.login",
+	'server' => "sneezy.saw.net",
+	'port' => "7900",
+	'common' => "turtleshell.common",
+	'squelch' => 0
 );
 
 #merge the commandline args
@@ -74,11 +79,11 @@ foreach my $key (keys(%startuphash)) {
 }
 tmsg "----------------------";
 
-if($startuphash{'squelch'} && $startuphash{'squelch'} =~ /^-{0,1}[0-9]*/) {
-	tmsg "Startup set squelch to $startuphash{'squelch'}";
-	set_tmsg_squelch($startuphash{'squelch'});
-}
+#Set the squelch
+tmsg "Startup set squelch to $startuphash{'squelch'}";
+set_tmsg_squelch($startuphash{'squelch'});
 
+#Set the server info
 ssetserver($startuphash{server});
 ssetport($startuphash{port});
 

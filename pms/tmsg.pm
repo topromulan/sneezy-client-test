@@ -52,6 +52,8 @@ sub set_tmsg_squelch {
 
 	return unless argverify(\@_, 1, "set_tmsg_squelch() takes 1 arg");
 
+	tmsg "Setting tmsg squelch to $_[0]", 2;
+
 	# **** should verify this is a number
 
 	$msg_squelch = $_[0];
