@@ -11,6 +11,16 @@ tmsg "bihex init", -2;
 
 #...
 
+# syntax:
+#
+# #bihex dir
+# #bihex dir 23-35
+# #bihex grep sword
+# #bihex grep sword [23-35]
+# 
+# #bihex show 23
+#
+
 sub tcmd_bihex {
 
 	return unless argverify(\@_, 1, "bihex takes one argument");
