@@ -23,6 +23,8 @@ use strict;
 use pms::tmsg;
 use pms::argverify;
 
+use pms::bih_explorer;
+
 tmsg "bih init", -2;
 
 #...
@@ -40,6 +42,10 @@ sub bih {
 	my $block = $_[0];
 	my $export;
 	#append it to anything in the buffer, and erase the buffer
+
+	## BIH Explorer. Put the block in the buffer.
+	#
+	bih_explorer_add $block;
 
 	$block = $bihbuffer . $block;
 	$bihbuffer = "";
@@ -90,7 +96,7 @@ sub bih {
 	$export .= $block;
 
 	unless($bihbuffer eq "" ) {
-		tmsg "bih: --did buffer some information!--",-2;
+		tmsg "bih: --did buffer some information!--",4;
 	}
 
 	print $export;

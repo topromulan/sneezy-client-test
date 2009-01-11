@@ -21,3 +21,19 @@ Scalar value @_[1] better written as $_[1] at tbag/alias.pm line 49.
 Scalar value @_[0] better written as $_[0] at tbag/alias.pm line 49.
 Scalar value @_[1] better written as $_[1] at tbag/alias.pm line 49.
 #  3 #Entering main program loop.
+#  3 #Hardcoded ^C quit - ok!
+#  3 #Quitting now..
+Scalar value @_[0] better written as $_[0] at tbag/alias.pm line 49.
+Scalar value @_[1] better written as $_[1] at tbag/alias.pm line 49.
+#  3 #Entering main program loop.
+Can't call method "bih_explorer_add" without a package or object reference at pms/bih.pm line 46.
+Scalar value @_[0] better written as $_[0] at tbag/alias.pm line 49.
+Scalar value @_[1] better written as $_[1] at tbag/alias.pm line 49.
+#  3 #Entering main program loop.
+Can't call method "bih_explorer_add" without a package or object reference at pms/bih.pm line 46.
+Scalar value @bih_explorer_array[$n] better written as $bih_explorer_array[$n] at pms/bih_explorer.pm line 47.
+Scalar value @_[0] better written as $_[0] at tbag/alias.pm line 49.
+Scalar value @_[1] better written as $_[1] at tbag/alias.pm line 49.
+#  3 #Entering main program loop.
+#  5 # bih() explorer adding one block!
+#  5 # bih() explorer adding one block!

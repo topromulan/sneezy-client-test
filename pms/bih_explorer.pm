@@ -16,13 +16,15 @@ tmsg "The bih() explorer! init", -2;
 
 my @bih_explorer_array;
 
+my $biherrlvl=5; # 
+
 sub bih_explorer_add {
 
 	return unless argverify(\@_, 1, "The bih() explorer takes one arg!");
 
 	push @bih_explorer_array, $_[0];
 
-	tmsg "bih() explorer adding one block!",0;
+	tmsg "bih() explorer adding one block!", $biherrlvl;
 
 
 
@@ -32,7 +34,7 @@ sub bih_explorer_dir {
 
 	my $n = @bih_explorer_array;
 
-	tmsg "bih_explorer: $n blocks";
+	tmsg "bih_explorer: $n blocks", $biherrlvl;
 
 }
 
@@ -48,7 +50,7 @@ sub bih_explorer_show {
 	$buff =~ s/\n/\\n/g;
 	$buff =~ s/\r/\\r/g;
 
-	tmsg $buff;
+	tmsg $buff, $biherrlvl;
 }
 
 
