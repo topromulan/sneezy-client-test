@@ -31,7 +31,7 @@ sub tcmd_bihex {
 
 	tmsg "The block input handler (bih) explorer! (bihex)", 1;
 
-	tmsg "Args bihex got are: @_", 1;
+	tmsg "Args bihex got are: \"@_\"", 1;
 
 	#might be no word
 	if ( !defined $_[0] ) {
@@ -61,6 +61,7 @@ sub tcmd_bihex {
 
 sub tcmd_bihex_dir {
 
+	tmsg "Args bihex dir got are: \"@_\"", 1;
 
 
 	#there could be no args
@@ -70,7 +71,7 @@ sub tcmd_bihex_dir {
 
 	} 
 	#could be a range
-	elsif ($#_ == 1 && $_[0] =~ m/^([0-9]+)-([0-9]+)$/ ) {
+	elsif ($#_ == 0 && $_[0] =~ m/^([0-9]+)-([0-9]+)$/ ) {
 		#That's great they used a valid syntax.
 		my $begin = $1;
 		my $end = $2;
@@ -79,6 +80,7 @@ sub tcmd_bihex_dir {
 
 		for($n=$1; $n<=$2; $n++) {
 			$out .= bih_explorer_dir_entry $n;
+			$out .= "\n";
 		}
 
 		tmsg $out, 3;
@@ -86,7 +88,7 @@ sub tcmd_bihex_dir {
 
 	} else {
 	#flunk!
-		tmsg "Invalid syntax for #bihex dir.", 2;
+		tmsg "Invalid syntax for #bihex dir: \"$_[0]\".", 2;
 		tmsg $cmd_syntax, 0;
 	}
 	
