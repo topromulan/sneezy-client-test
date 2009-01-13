@@ -51,7 +51,6 @@ sub bih_explorer_dir {
 	my $big = $#bih_explorer_array;
 
 	for (my $n=0; $n<=$big; $n++) {
-		tmsg "an entry!!";
 		$listing .= bih_explorer_dir_entry($n) . "\n";
 
 	}
@@ -62,8 +61,6 @@ sub bih_explorer_dir {
 
 sub bih_explorer_dir_entry {
 
-	tmsg "Before";
-
 	my $entry = sprintf ("Block %d.) %d bytes", 
 		$_[0], 
 		length($bih_explorer_array[$_[0]] )
@@ -73,8 +70,6 @@ sub bih_explorer_dir_entry {
 		#
 		#);
 	
-	tmsg "AFter";
-
 	return $entry;
 
 }
