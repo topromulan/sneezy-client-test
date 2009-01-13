@@ -15,10 +15,12 @@ my $msg_hard = 0;
 
 my $msg_stderr_bar = 2;
 
-print "Turtle messaging initialization\n";
+print "###### Turtle messaging initialization\n";
 
-print " - The bar for STDERR is set at: $msg_stderr_bar\n";
-print " - The user squelch is set at: $msg_squelch\n";
+print "##  ##  - The bar for STDERR is set at: $msg_stderr_bar\n";
+print "##  ##  - The user squelch is set at: $msg_squelch\n";
+
+print "##  ##\n";
 
 
 ## tmsg 

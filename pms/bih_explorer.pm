@@ -16,7 +16,7 @@ tmsg "The bih() explorer! init", -2;
 
 my @bih_explorer_array;
 
-my $biherrlvl=5; # 
+my $biherrlvl=-1; # 
 
 sub bih_explorer_add {
 

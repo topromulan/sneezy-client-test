@@ -96,7 +96,11 @@ sub bih {
 	$export .= $block;
 
 	unless($bihbuffer eq "" ) {
-		tmsg "bih: --did buffer some information!--",4;
+		my $rep = $bihbuffer;
+
+		$rep =~ s/\x1B/ESC/g;
+
+		tmsg "bih: --did buffer some information!--\n$rep\n --",-1;
 	}
 
 	print $export;

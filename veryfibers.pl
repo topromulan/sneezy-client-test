@@ -75,7 +75,7 @@ my %startuphash = (
 	'server' => "sneezy.saw.net",
 	'port' => "7900",
 	'common' => "turtleshell.common",
-	'squelch' => 0
+	'squelch' => -4
 );
 
 #merge the commandline args
