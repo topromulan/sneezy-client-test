@@ -110,13 +110,6 @@ ReadMode 4;
 tmsg "Entering main program loop.", 3;
 
 
-tcmd_help();
-tcmd_bihex([""]);
-
-
-
-
-
 my $sneezy_in;
 my $sneezy_out;
 my $k;
