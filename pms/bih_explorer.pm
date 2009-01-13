@@ -61,14 +61,23 @@ sub bih_explorer_dir {
 
 sub bih_explorer_dir_entry {
 
-	my $entry = sprintf ("Block %d.) %d bytes", 
-		$_[0], 
-		length($bih_explorer_array[$_[0]] )
-		);
-		#$_[0],
-		#strlen($bih_explorer_array[$_[0]] )
-		#
-		#);
+	my $i = $_[0];
+
+	my $entry;
+
+	if( ($i >= 0) && ($i <= $#bih_explorer_array) )
+	{
+		$entry = sprintf (
+			"Block %d.) %d bytes", 
+			$i, 
+			length($bih_explorer_array[$i] )
+			);
+	} else {
+		$entry = sprintf (
+			"Block %d.) INVALID BLOCK NUMBER",
+			$i
+			);
+	}
 	
 	return $entry;
 
