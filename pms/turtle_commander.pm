@@ -44,15 +44,13 @@ sub tcmd_scan {
 
 	foreach $leaf (@files) {
 
-		print "Leaf: $leaf\n";
+		tmsg "Turtle command file: $leaf\n", -2;
 
 		$leaf =~ s/\.pm$//;
 
 		$use .= "use tbag::$leaf;\n";
 		
 	}
-
-	print "Turtle Commander scan:\n-------\n$use\n------- ^^\n";
 
 	return $use;
 

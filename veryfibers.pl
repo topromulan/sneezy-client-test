@@ -49,7 +49,7 @@ use pms::turtle_commander;
 
 my $tcmds = tcmd_scan();		#(returns the list of modules to load)
 
-tmsg "Loading these fine Turtle Commands:\n$tcmds\n\n", 1;
+tmsg "Loading these fine Turtle Commands:\n$tcmds\n", 1;
 eval $tcmds;
 
 use pms::sneezy;
@@ -60,9 +60,8 @@ use pms::quit;
 
 tmsg 
 	"\n\nTurtleShell version $turtlever firing up..\n" .
-	"-- This is a test of tmsg multi-line handling.\n" .
+	"-- \n" .
 	"\n" .
-	"Output all pretty? OK, let's play!\n\n\n" ,
 	1;
 	
 
