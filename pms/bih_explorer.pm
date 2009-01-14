@@ -4,6 +4,10 @@
 #######
 # a perl shell module to explore bih blocks
 #
+# bih.pm adds in blocks of raw telnet data it recieves 
+#     by calling bih_explorer_add()
+#
+# some of these functions are called by tbag/bihex.pm
 #
 
 use strict;
@@ -92,36 +96,63 @@ sub bih_explorer_show {
         my $data = $bih_explorer_array[$_[0]];
 
         #Begin constructing a multi-line string of the analysis.
-        my $ana = "Analysis:\n--------";
+        my $ana = " -- Analysis:\n==============\n";
 
-        my $hexdump = ""; #Start with a hex dump
+	my $separator = "----------";
+
+
+	###################
+	# block stats
+
+	$ana .= " -- Block statistics\n$separator\n";
+
+	$ana .= sprintf
+		(
+			"Bytes: \t%d\n"		.
+			"Newlines: \t%d\n"	.
+			"Escapes: \t%d\n",
+
+			length($data),
+			$data =~ tr/\n//,
+			$data =~ tr/\x1B//
+		);
+
+
+
+	###################
+	# hex dump
+
+	#add the hex dump data to the analysis
+	$ana .= " -- Hex dump:\n$separator\n";
+
+        my $hexdump = ""; 
 
         my $copy = reverse $data;
 
         while(my $char = chop $copy) {
-                $hexdump .= sprintf "0x%3x ";
+                $hexdump .= sprintf "0x%02x ", ord($char);
         }
 
-        $hexdump =~ s/(0x... ){8}/$1\n/;
+	#split the hex dump into rows of 8 bytes
+        $hexdump =~ s/((0x.. ){8})/$1\n/gm;
+	#add a space after the 4th
+        $hexdump =~ s/^((0x.. ){4})/$1 /gm;
+
+	$ana .= "$hexdump\n$separator";
+
+	###################
+	# raw data
+
+	#add the raw data to the analysis
+	$ana .= " -- Data:\n$separator\n$data\n$separator\n";
+
+	# translate any escape characters in the analysis into bold ESC
+	$ana =~ s/\x1B/\x1B[1mESC\x1B0m/g;
 
 	tmsg $hexdump, $biherrlvl;
 
+	return "$ana\n============";
 
-
-
-
-
-	##my $n = $_[0];
-#
-	#my $buff = @bih_explorer_array[$n];
-#
-	#$buff =~ s/\x1b/ESC/g;
-	#$buff =~ s/\n/\\n/g;
-	#$buff =~ s/\r/\\r/g;
-#
-#
-#
-	#tmsg $buff, $biherrlvl;
 }
 
 

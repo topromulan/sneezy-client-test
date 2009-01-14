@@ -61,7 +61,7 @@ sub tcmd_bihex {
 
 sub tcmd_bihex_dir {
 
-	tmsg "Args bihex dir got are: \"@_\"", 1;
+	tmsg "Args bihex dir got are: \"@_\"", -1;
 
 
 	#there could be no args
@@ -117,6 +117,8 @@ sub tcmd_bihex_dir_entry {
 
 sub tcmd_bihex_grep {
 
+	tmsg "Args bihex grep got are: \"@_\"", -1;
+
 	if (1) {
 	} else {
 	#flunk!
@@ -128,7 +130,27 @@ sub tcmd_bihex_grep {
 
 sub tcmd_bihex_show {
 
-	if (1) {
+	tmsg "Args bihex show got are: \"@_\"", -1;
+
+	if($#_ == 0 && $_[0] =~ m/^([0-9]+)$/ )
+	#one arg, a block number
+	{
+		my $blocknumber = $1;
+
+		tmsg sprintf
+		(
+			"Block number %d\n" .
+			"-----\n" .
+			"%s\n" .
+			"-----\n",
+			
+			$blocknumber,
+			bih_explorer_show($blocknumber)
+		), 3;
+
+
+
+
 	} else {
 	#flunk!
 		tmsg "Invalid syntax for #bihex show.", 2;
