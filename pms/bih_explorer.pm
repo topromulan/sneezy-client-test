@@ -129,12 +129,15 @@ sub bih_explorer_show {
 
         my $copy = reverse $data;
 
-        while(my $char = chop $copy) {
+	tmsg sprintf ("%d bytes of data", length($copy));
+
+        while(length(my $char = chop $copy) == 1) {
                 $hexdump .= sprintf "0x%02x ", ord($char);
         }
 
 	#split the hex dump into rows of 8 bytes
-        $hexdump =~ s/((0x.. ){8})/$1\n/gm;
+        #$hexdump =~ s/((0x.. ){8})/$1\n/gm;
+        $hexdump =~ s/(0x.. 0x.. 0x.. 0x.. 0x.. 0x.. 0x.. 0x.. )/$1\n/gm;
 	#add a space after the 4th
         $hexdump =~ s/^((0x.. ){4})/$1 /gm;
 
@@ -148,8 +151,6 @@ sub bih_explorer_show {
 
 	# translate any escape characters in the analysis into bold ESC
 	$ana =~ s/\x1B/\x1B[1mESC\x1B0m/g;
-
-	tmsg $hexdump, $biherrlvl;
 
 	return "$ana\n============";
 
