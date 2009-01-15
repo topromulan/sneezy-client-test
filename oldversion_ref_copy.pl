@@ -278,17 +278,17 @@ sub rp {
 		if(rindex($arg, "Login: ") > 0) {
 			select(undef,undef,undef,0.25); 
 			my $result=0;
-			open FILEIN, "<sneezy.login" or $result=-1;
+			open FILEIN, "<sneezy.logon" or $result=-1;
 			if($result == 0) {
 
 				tmsg "#Login found\n", 1;
 				tmsg "#Secretly passing user/pass info!\n", 1;
-				my @loginpw = <FILEIN>;
-				$telnet->print("$loginpw[0]\n$loginpw[1]\n\n");
+				my @logonpw = <FILEIN>;
+				$telnet->print("$logonpw[0]\n$logonpw[1]\n\n");
 
 			} else {
 
-				tmsg "#Note: To enable auto login, store your username and then password in first two lines of sneezy.login\n", 1;
+				tmsg "#Note: To enable auto logon, store your username and then password in first two lines of sneezy.logon\n", 1;
 
 			}
 			close FILEIN;

@@ -71,11 +71,12 @@ tmsg
 #
 
 my %startuphash = (
-	'login' => "sneezy.login",
+	'logon' => "sneezy.logon",
 	'server' => "sneezy.saw.net",
 	'port' => "7900",
 	'common' => "turtleshell.common",
-	'squelch' => -4
+	'squelch' => -4,
+	'logon' => 0
 );
 
 #merge the commandline args
@@ -93,8 +94,13 @@ tmsg "Startup set squelch to $startuphash{'squelch'}";
 set_tmsg_squelch($startuphash{'squelch'});
 
 #Set the server info
+tmsg "Startup set server to $startuphash{'squelch'} and port to $startuphash{'port'}";
 ssetserver($startuphash{server});
 ssetport($startuphash{port});
+
+#Set automatical logon info
+tmsg "Startup set logon to $startuphash{'logon'}";
+logon_setinfo($startuphash{logon});
 
 ###############
 #
@@ -117,10 +123,22 @@ my $short_stack_ref;
 
 $| = 1;
 
+sconnect();
+
 while(1) {
 
-	scheck();
-	sget();
+	if ( scheck() ) {
+		sget();
+
+
+	} else {
+		tmsg "Trouble connecting to SneezyMUD. Pause 2 seconds.", 3;
+		sleep 2;
+		tmsg "Trying to connect to SneezyMUD.", 3;
+		sconnect();
+	}
+
+
 	kp($k) if defined($k=turtle_key()); 
 
 	$short_stack_ref = kp_serve();
