@@ -112,8 +112,7 @@ sub sget {
 		#  every time.. like.. are we near the beginning of the 
 		#   connection?
 		
-		unless ( ($sconnectionstate == 2) || ! $sautologonvar ) {
-
+		unless ( ($sconnectionstate == 2) || $sautologonvar == 0 ) {
 			
 			if ( logon_packet($incoming) ) 
 			{

@@ -34,7 +34,7 @@ sub logon_setinfo {
 		$creds="Account\nPassword\n";
 
 		#disable in sneezy 
-		#sautologon(0);
+		sautologon(0);
 
 		return;
 
@@ -42,7 +42,7 @@ sub logon_setinfo {
 
 	$creds = $1;
 
-	#sautologon(1);
+	sautologon(1);
 
 
 }
@@ -60,8 +60,10 @@ sub logon_packet {
 
 	if ( $_[0] =~ m/Welcome to SneezyMUD v5.2:\n.*Login: /s )
 	{
+		tmsg "logon_packet: true", -1;
 		return 1;
 	} else {
+		tmsg "logon_packet: false", -1;
 		return 0;
 	}
 

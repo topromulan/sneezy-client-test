@@ -47,6 +47,7 @@ use pms::english_to_hotkey;
 use pms::turtle_processor;
 use pms::turtle_commander;
 
+
 my $tcmds = tcmd_scan();		#(returns the list of modules to load)
 
 tmsg "Loading these fine Turtle Commands:\n$tcmds\n", 1;
@@ -71,7 +72,6 @@ tmsg
 #
 
 my %startuphash = (
-	'logon' => "sneezy.logon",
 	'server' => "sneezy.saw.net",
 	'port' => "7900",
 	'common' => "turtleshell.common",
