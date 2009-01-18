@@ -112,7 +112,7 @@ sub sget {
 		#  every time.. like.. are we near the beginning of the 
 		#   connection?
 		
-		tmsg "in sget connectionstate $sconnectionstate var $sautologonvar";
+		tmsg "in sget connectionstate $sconnectionstate var $sautologonvar", -1;
 
 		unless ( ($sconnectionstate == 2) || $sautologonvar == 0 ) {
 
