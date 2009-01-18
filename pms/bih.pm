@@ -43,67 +43,11 @@ sub bih {
 	my $export;
 	#append it to anything in the buffer, and erase the buffer
 
-	## BIH Explorer. Put the block in the buffer.
+	## BIH Explorer. Put the raw block in the buffer.
 	#
 	bih_explorer_add $block;
 
-	$block = $bihbuffer . $block;
-	$bihbuffer = "";
-
-	my $c = 0;
-	my $n = 0;
-
-	#count the codes and newlines
-	{
-		my $tmp=$block;
-		while($tmp =~ s/^.*\x1b//) {
-			$c++;
-		}
-		$tmp=$block;
-		while($tmp =~ s/^.*\n//) {
-			$n++;
-		}
-	}
-
-		
-	tmsg "Bih block: $c codes, $n newlines", -2;
-
-
-	#let's get any compleat lines outta here
-	for(my $t=0; $t < $n; $t++) {
-		
-		$block =~ s/(.*\n)//;
-		$export .= $1;
-
-	}
-
-	#check for unfinished ansi save position/return code
-	if(($block =~ m/\x1b7/) || ($block =~ m/\x1b[0-9\;]+H/)) {
-		tmsg "bih: detected save pos code 7 or jump code H", -2;
-
-		if($block =~ m/\x1b8/) {
-			tmsg "bih: detected return pos code ESC[8", -2;
-			$block =~ s/(.*\x1b8)//;
-			$export .= $1;
-		} 
-		
-		$bihbuffer = $block;
-		$block = "";
-	}
-
-	#tmsg "bih: leftover = $block", -1;
-
-	$export .= $block;
-
-	unless($bihbuffer eq "" ) {
-		my $rep = $bihbuffer;
-
-		$rep =~ s/\x1B/ESC/g;
-
-		tmsg "bih: --did buffer some information!--\n$rep\n --",-1;
-	}
-
-	print $export;
+	print $block;
 	
 }
 
