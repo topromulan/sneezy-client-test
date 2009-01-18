@@ -24,32 +24,17 @@ tmsg "logon code init", -2;
 
 # called by veryfibers
 sub logon_setinfo {
-	return unless argverify(\@_, 1, "logon::setinfo takes 1 arg");
 
-	unless ( $_[0] =~ m/^([.+\n.+\n])$/s ) {
-		
-		tmsg "Bad format for logon_setinfo().", 1;
+	#return unless argverify(\@_, , "logon::setinfo takes 2 args");
 
-		#reset to default
-		$creds="Account\nPassword\n";
+	$creds = sprintf("@_");
 
-		#disable in sneezy 
-		sautologon(0);
-
-		return;
-
-	}
-
-	$creds = $1;
+	$creds =~ s/^\s*//msg;
 
 	sautologon(1);
 
 
 }
-
-#my $creds = "";
-#logon_setinfo(0);
-
 
 sub logon_packet {
 

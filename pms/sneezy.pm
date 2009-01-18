@@ -35,7 +35,7 @@ my $sconnectionstate = 0;	# default = not connected
 # 0 = auto logon enabled
 # 1 = auto logon disabled
 
-my $sautologonvar = 0; 		# default = disabled
+my $sautologonvar = 1; 		# default = disabled
 
 sub sconnect {
 	tmsg "sconnect: telnetting to $server $port", 0;
@@ -112,7 +112,11 @@ sub sget {
 		#  every time.. like.. are we near the beginning of the 
 		#   connection?
 		
+		tmsg "in sget connectionstate $sconnectionstate var $sautologonvar";
+
 		unless ( ($sconnectionstate == 2) || $sautologonvar == 0 ) {
+
+			tmsg "do something";
 			
 			if ( logon_packet($incoming) ) 
 			{
@@ -169,6 +173,8 @@ sub ssetport {
 sub sautologon {
 	# enable or disable autologon
 	return unless argverify(\@_, 1, "sautologon takes 1 arg");
+
+	tmsg "sneezy::sautologon called with @_";
 
 	$sautologonvar=0;
 

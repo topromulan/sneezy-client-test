@@ -72,11 +72,11 @@ tmsg
 #
 
 my %startuphash = (
-	'server' => "sneezy.saw.net",
-	'port' => "7900",
-	'common' => "turtleshell.common",
-	'squelch' => -4,
-	'logon' => 0
+	server => "sneezy.saw.net",
+	port => "7900",
+	common => "turtleshell.common",
+	squelch => -4,
+	logon => 0
 );
 
 #merge the commandline args
@@ -100,7 +100,10 @@ ssetport($startuphash{port});
 
 #Set automatical logon info
 tmsg "Startup set logon to $startuphash{'logon'}";
-logon_setinfo($startuphash{logon});
+
+open SECRET, "<$startuphash{logon}";
+logon_setinfo(<SECRET>);
+close SECRET;
 
 ###############
 #
