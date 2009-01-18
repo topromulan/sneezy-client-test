@@ -47,8 +47,8 @@ sub logon_setinfo {
 
 }
 
-my $creds = "";
-logon_setinfo(0);
+#my $creds = "";
+#logon_setinfo(0);
 
 
 sub logon_packet {
