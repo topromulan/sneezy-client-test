@@ -43,18 +43,14 @@ sub logon_packet {
 	# This sub will scan the argument to see if it is a logon prompt.
 	# If so, it will return 1. Else, 0.
 
-	if ( $_[0] =~ m/Welcome to SneezyMUD v5.2:\n.*Login: /s )
+	if ( $_[0] =~ m/\rLogin: $/ )
 	{
-		tmsg "logon_packet: true", -1;
+		tmsg "logon_packet: TRUE", -1;
 		return 1;
 	} else {
-		tmsg "logon_packet: false", -1;
+		tmsg "logon_packet: FALSE", -1;
 		return 0;
 	}
-
-
-	#$ perl -e '$x="Hi\nI am it.\n\nLogin: "; print "Success\n" if $x =~ m/^Hi\n.*Login:/s'
-	#Success
 
 
 

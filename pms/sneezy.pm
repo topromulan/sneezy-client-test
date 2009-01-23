@@ -102,21 +102,22 @@ sub sget {
 
 
 	if(my $incoming = $stelnet->get(Timeout => 0)) {
-		#bih_explorer_add($incoming); // disabled temporarily..
+
+		#Pass the block to the block input handler
 		bih($incoming);
 
 
 		# AUTO LOGIN
 
-		# maybe add some way to disable this instead of checking
-		#  every time.. like.. are we near the beginning of the 
-		#   connection?
+		# If the connection state is not 2 and auto logon is enabled
+		#  then check if it is a logon packet and send the credentials
+		#  if so.
+
+		# Note: This may be a non-optimal place for this functionality
 		
 
 		unless ( ($sconnectionstate == 2) || $sautologonvar == 0 ) {
 
-			tmsg "do something";
-			
 			if ( logon_packet($incoming) ) 
 			{
 				tmsg "Automatically logging on.", 2;
@@ -133,15 +134,14 @@ sub sget {
 				$stelnet->print(logon_credentials());
 
 				#
+				# Assume it worked - we tried anyway and
+				#  connection state 2 will avoid running
+				#  this code over and over in sget()
+	
+				$sconnectionstate = 2;
 
 			}
 
-			# we can test for success later
-			#
-			# but assume success will prevent retry loop..
-			#  we sent the logon, now get on with it..
-
-			$sconnectionstate = 2;
 
 		}
 	}
