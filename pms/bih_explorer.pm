@@ -127,30 +127,55 @@ sub bih_explorer_show {
 
         my $hexdump = ""; 
 
-        my $copy = reverse $data;
-
-	tmsg sprintf ("%d bytes of data", length($copy));
+        my $copy = reverse $data;	#is there a chop for the first char?
 
         while(length(my $char = chop $copy) == 1) {
+
+		#display the hex value
                 $hexdump .= sprintf "0x%02x ", ord($char);
-        }
 
+		#display the char or a description
+		# widths should be: 4 with at least one trailing space
+
+		if (ord($char) >= 0x20) {
+			#display the literal character
+			$hexdump .= " $char  ";
+		} else {
+			#display a descriptive string for common
+			# control characters or else a dot
+
+			if($char eq "\x1b") {
+				#ESC
+				$hexdump .= 'ESC ';
+			} elsif($char eq " ") {
+				#SPACE
+				$hexdump .= "' ' ";
+			} elsif($char eq "\r") {
+				#CARRIAGE RETURN
+				$hexdump .= ' \r ';
+			} elsif($char eq "\n") {
+				#LINE FEED
+				$hexdump .= ' \n ';
+			} else {
+				#Something else
+				$hexdump .= ' .  ';
+			}
+
+
+		}
+
+
+	}
+	
 	#split the hex dump into rows of 8 bytes
-        #$hexdump =~ s/((0x.. ){8})/$1\n/gm;
-        $hexdump =~ s/(0x.. 0x.. 0x.. 0x.. 0x.. 0x.. 0x.. 0x.. )/$1\n/gm;
-	#add a space after the 4th
-        $hexdump =~ s/^((0x.. ){4})/$1 /gm;
+        #$hexdump =~ s/(0x.. 0x.. 0x.. 0x.. 0x.. 0x.. 0x.. 0x.. )/$1\n/gm;
+        $hexdump =~ s/(0x.. ... 0x.. ... 0x.. ... 0x.. ... 0x.. ... 0x.. ... 0x.. ... 0x.. ... )/$1\n/gm;
+	#add an extra space after the 4th
+        $hexdump =~ s/^((0x.. ... ){4})/$1 /gm;
 
-	$ana .= "$hexdump\n$separator";
 
-	###################
-	# raw data
+	$ana .= "$hexdump\n$separator\n";
 
-	#add the raw data to the analysis
-	$ana .= " -- Data:\n$separator\n$data\n$separator\n";
-
-	# translate any escape characters in the analysis into bold ESC
-	$ana =~ s/\x1B/\x1B[1mESC\x1B0m/g;
 
 	return "$ana\n============";
 
