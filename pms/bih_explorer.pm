@@ -22,7 +22,7 @@ my @bih_explorer_array;
 
 my $biherrlvl=-1; # 
 
-sub bih_explorer_add {
+sub bih_explorer_add_block {
 
 	return unless argverify(\@_, 1, "The bih() explorer takes one arg!");
 
@@ -40,6 +40,40 @@ sub bih_explorer_add {
 	return $n;
 
 }
+
+sub bih_explorer_add_buffer {
+	return unless argverify(\@_, 2, "add buffer takes two args");
+
+	my $n = $_[0];
+	my $buf = $_[1];
+
+	if ( $n > $#bih_explorer_array )
+	{
+		#this should never happen.. just called by bih
+		tmsg "error. buffer n > #BEA", 3;
+		return;
+	}
+
+	$bih_explorer_array[$n]{buffered} = $buf;
+
+}
+sub bih_explorer_add_export {
+	return unless argverify(\@_, 2, "add export takes two args");
+
+	my $n = $_[0];
+	my $exp = $_[1];
+
+	if ( $n > $#bih_explorer_array )
+	{
+		#this should never happen.. just called by bih
+		tmsg "error. export n > #BEA", 3;
+		return;
+	}
+
+	$bih_explorer_array[$n]{exported} = $exp;
+
+}
+
 
 
 # Used by tcmd_bihex_dir .. should make a function to return the array size
@@ -70,9 +104,11 @@ sub bih_explorer_dir_entry {
 	if( ($i >= 0) && ($i <= $#bih_explorer_array) )
 	{
 		$entry = sprintf (
-			"Block %d.) %d bytes", 
+			"Block %d.) %4d bytes. %4d exported, %4d buffered.", 
 			$i, 
-			length($bih_explorer_array[$i]{block} )
+			length($bih_explorer_array[$i]{block} ),
+			length($bih_explorer_array[$i]{exported} ),
+			length($bih_explorer_array[$i]{buffered} )
 			);
 	} else {
 		$entry = sprintf (
@@ -116,17 +152,30 @@ sub bih_explorer_show {
 			$data =~ tr/\x1B//
 		);
 
+	#add the hex dump data to the analysis
+	$ana .= " -- Hex dump of block:\n$separator\n";
+	$ana .= bih_explorer_hexdump ( $data );
 
+
+	#$ana .= " -- Hex dump of export:\n$separator\n";
+	#$ana .= bih_explorer_hexdump ( $bih_explorer_array[$_[0]]{exported} );
+
+	$ana .= " -- Hex dump of buffered data:\n$separator\n";
+	$ana .= bih_explorer_hexdump ( $bih_explorer_array[$_[0]]{buffered} );
+
+
+}
+
+sub bih_explorer_hexdump {
+
+	return unless argverify(\@_, 1, "bih_explorer_hexdump() requires 1 arg");
 
 	###################
 	# hex dump
 
-	#add the hex dump data to the analysis
-	$ana .= " -- Hex dump:\n$separator\n";
+        my $hexdump = "===========\n"; 
 
-        my $hexdump = ""; 
-
-        my $copy = reverse $data;	#is there a chop for the first char?
+        my $copy = reverse $_[0];	#is there a chop for the first char?
 
         while(length(my $char = chop $copy) == 1) {
 
@@ -173,14 +222,9 @@ sub bih_explorer_show {
         $hexdump =~ s/^((0x.. ... ){4})/$1 /gm;
 
 
-	$ana .= "$hexdump\n$separator\n";
-
-
-	return "$ana\n============";
+	return "$hexdump\n==========\n";
 
 }
-
-
 
 
 

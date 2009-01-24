@@ -44,7 +44,7 @@ sub bih {
 	
 	## BIH Explorer. Put the raw block in the buffer.
 	#
-	my $blocknum = bih_explorer_add $block;
+	my $blocknum = bih_explorer_add_block $block;
 	#
 	##
 
@@ -148,47 +148,13 @@ sub bih {
 	$tmp =~ s/\x1b/ESC/msg;
 	$tmp =~ s/\r/\\r/msg;
 	tmsg "\x1b[31mThe buffer on bih($blocknum) is:\n $tmp", 10;
+
+	bih_explorer_add_buffer($blocknum, $bihbuffer);
+	bih_explorer_add_export($blocknum, $export);
 	
 	print $export;
 	return;
 
-	#if ( $export =~ m/.*(\x1b\[[0-9]+;[0-9]+H.*)$/ )
-	#{
-		#tmsg "\x1b[33mBlock $blocknum has a jump", 2;
-#
-		#my $lastjumpon = $1;
-#
-		#if($jumpon !~ m/\x1b8/ || 
-			#$jumpon =~ m/\x1b8.*\x1b\[[0-9;]+H
-		#{
-			##no return
-			#tmsg "\x1b[31mBlock $blocknum jump was unfinished", 2;
-#
-			#my $tmp = $jumpon;
-			#$tmp =~ s/\x1b/ESC/mg;
-			#$tmp =~ s/\r/\\r/mg;
-			#tmsg "\x1b[32mbuffered $tmp", 3;
-#
-			##put that part in the buffer:
-			#$bihbuffer = $jumpon;
-#
-			##and cut it off the export
-			##this doesn't work.. $export =~ s/$lastjumpon$//;
-			#$export = substr (
-				#$export,
-				#0,
-				#length($export) - length($jumpon) -1
-				#);
-#
-			#$tmp = $export;
-			#$tmp =~ s/\x1b/ESC/mg;
-			#$tmp =~ s/\r/\\r/mg;
-			#tmsg "\x1b[33mexporting$tmp", 3;
-#
-		#}
-	#}
-
-	#print $export;
 	
 }
 
