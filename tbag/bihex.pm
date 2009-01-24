@@ -27,8 +27,6 @@ $cmd_syntax =
 
 sub tcmd_bihex {
 
-	print "Bihex certainly was called!\n";
-
 	tmsg "The block input handler (bih) explorer! (bihex)", 1;
 
 	tmsg "Args bihex got are: \"@_\"", 1;
