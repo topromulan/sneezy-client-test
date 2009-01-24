@@ -136,18 +136,10 @@ sub bih {
 	
 
 	if ( length($working) > 0) {
-		tmsg "\x1b[38mbih($blocknum) did buffer some info", 10;
+		tmsg "\x1b[38mbih($blocknum) did buffer some info", 9;
 		$bihbuffer = $working;
 	}
 
-	my $tmp = $export;
-	$tmp =~ s/\x1b/ESC/msg;
-	$tmp =~ s/\r/\\r/msg;
-	tmsg "\x1b[32mThe export on bih($blocknum) is:\n $tmp", 10;
-	$tmp = $bihbuffer;
-	$tmp =~ s/\x1b/ESC/msg;
-	$tmp =~ s/\r/\\r/msg;
-	tmsg "\x1b[31mThe buffer on bih($blocknum) is:\n $tmp", 10;
 
 	bih_explorer_add_buffer($blocknum, $bihbuffer);
 	bih_explorer_add_export($blocknum, $export);
