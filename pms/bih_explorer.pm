@@ -28,12 +28,13 @@ sub bih_explorer_add {
 
 	push @bih_explorer_array, $_[0];
 
-	my $big = $#bih_explorer_array + 1;
+	my $n = $#bih_explorer_array;
 	my $long = length($_[0]);
 
-	tmsg "bih() explorer added one block! BEA is $big big and that one was $long long!", $biherrlvl;
+	tmsg "bih() explorer added one block! That is block $n and that one was $long long!", $biherrlvl;
 
-
+	
+	return $n;
 
 }
 
