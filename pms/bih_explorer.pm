@@ -26,9 +26,12 @@ sub bih_explorer_add {
 
 	return unless argverify(\@_, 1, "The bih() explorer takes one arg!");
 
-	push @bih_explorer_array, $_[0];
+	push @bih_explorer_array, {};
 
 	my $n = $#bih_explorer_array;
+
+	$bih_explorer_array[$n]{block} = $_[0];
+
 	my $long = length($_[0]);
 
 	tmsg "bih() explorer added one block! That is block $n and that one was $long long!", $biherrlvl;
@@ -38,15 +41,9 @@ sub bih_explorer_add {
 
 }
 
-#sub bih_explorer_dir {
-#
-	#my $n = @bih_explorer_array;
-#
-	#tmsg "bih_explorer: $n blocks", $biherrlvl;
 
-#}
-
-# Used by tcmd_bihex_dir
+# Used by tcmd_bihex_dir .. should make a function to return the array size
+#  and it can call dir_entry itself for the full list
 
 sub bih_explorer_dir {
 
@@ -75,7 +72,7 @@ sub bih_explorer_dir_entry {
 		$entry = sprintf (
 			"Block %d.) %d bytes", 
 			$i, 
-			length($bih_explorer_array[$i] )
+			length($bih_explorer_array[$i]{block} )
 			);
 	} else {
 		$entry = sprintf (
@@ -94,7 +91,8 @@ sub bih_explorer_show {
 	return unless argverify(\@_, "1n", "bih_explorer_show() requires 1 arg");
 	
         #This is the raw data from Telnet
-        my $data = $bih_explorer_array[$_[0]];
+	# **** this should check that it is valid number
+        my $data = $bih_explorer_array[$_[0]]{block};
 
         #Begin constructing a multi-line string of the analysis.
         my $ana = " -- Analysis:\n==============\n";
