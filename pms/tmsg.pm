@@ -81,7 +81,7 @@ sub tmsg_dest_print {
 	
 	$err=1 if $high > $msg_stderr_bar;
 
-	print $str;
+	print "\x1b[1;37m$str\x1b[0m" if $high < 10;
 
 	print STDERR $str if $err;
 
