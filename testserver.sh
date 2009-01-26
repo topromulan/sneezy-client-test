@@ -17,14 +17,19 @@ function loginprompt {
 	cat sneezy.loginprompt
 }
 
-# **** this is screwed up right now i think because tail -f never dies
-# **** just restart the server while the client is trying to connect
 
 while true 
 do 
 	loginprompt > sneezy.namedpipe &
 
-	tail -f sneezy.namedpipe | tcplisten -irv 10000
+	tail -f sneezy.namedpipe | 
+		(
+		tcplisten -irv 10000
+
+		#have to do this to or else tail never dies and
+		# the test server doesn't restart..
+		echo "\x1C" > sneezy.namedpipe
+		)
 
 	asdf again
 
