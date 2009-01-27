@@ -8,6 +8,9 @@
 use strict;
 use pms::tmsg;
 
+use pms::hotkey_to_english;
+use pms::english_to_hotkey;
+
 use pms::quit;
 
 tmsg "kp init", -2;

@@ -1,17 +1,21 @@
 #!/usr/bin/perl
 #
-# Turtle Shell SneezyMUD Client
+# Turtle Shell SneezyMUD Client v2
 # You reconnected with negative hit points, automatic death RE-occurring.
 #
-# 2003-2005 <3 Dale
+# 2003-2009 Dale
 #
-# test
 
-use strict;
-my $turtlever = "0.9¹²³";
+my $turtlever = "0.0¹²³";
 
 #SNUH
 #AnotherSnuh
+
+###############
+#
+# verify that standard input agrees (is a terminal)
+#
+#
 
 unless( -t STDIN) {
 	print "TurtleShell version $turtlever\n";
@@ -25,27 +29,24 @@ unless( -t STDIN) {
 
 ## perl distro
 #use IO; #for logfile flushing
+#use pms::log;
 
 use warnings;
+use strict;
 
-## homemade
+################
+#
+# Ambpot's Homemade Home Cookin' Perl Modules
+#
+#
 use pms::tmsg; 
-#msg_test();
-
-use pms::log;
 
 use pms::lp;
 use pms::kp;
 
-use pms::bih;
-#use pms::bih_explorer;
-
 use pms::turtle_key;
-use pms::hotkey_to_english;
-use pms::english_to_hotkey;
 
-use pms::turtle_processor;
-use pms::turtle_commander;
+use pms::turtle_commander;	#Command Loader
 
 
 my $tcmds = tcmd_scan();		#(returns the list of modules to load)
@@ -75,7 +76,7 @@ my %startuphash = (
 	server => "sneezy.saw.net",
 	port => "7900",
 	common => "turtleshell.common",
-	squelch => -4,
+	squelch => -2,
 	logon => 0
 );
 

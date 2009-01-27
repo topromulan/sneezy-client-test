@@ -10,6 +10,7 @@ use Net::Telnet;
 
 use pms::argverify;
 use pms::logon;
+use pms::bih;
 
 use warnings;
 use strict;
@@ -35,7 +36,7 @@ my $sconnectionstate = 0;	# default = not connected
 # 0 = auto logon enabled
 # 1 = auto logon disabled
 
-my $sautologonvar = 1; 		# default = disabled
+my $sautologonvar = 0; 		# default = disabled
 
 sub sconnect {
 	tmsg "sconnect: telnetting to $server $port", 0;
