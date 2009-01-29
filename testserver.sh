@@ -1,3 +1,16 @@
+#!/bin/bash
+
+# Test Server for Turtle Shell v2 development
+# Copyright(c) 2009 Dale R. Anderson
+
+
+
+# This handy test server works pretty well for a bash script.
+#
+#  It should send a login message after 5 seconds from a connection
+# you can send more "MUD" server data via the file sneezy.namedpipe
+# while the client is connected.
+#
 
 function asdf { 
 	echo Listening on port 10000 $*

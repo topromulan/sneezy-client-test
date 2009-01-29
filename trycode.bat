@@ -1,3 +1,13 @@
+#!/bin/bash
+
+# trycode.bat
+# Test script for running TurtleShell v2
+# 
+# Execute this with no argments to connect to the local server (testserver.sh)
+# Execute with the following syntax to connect to actually connect SneezyMUD
+#
+# ./trycode.bat live
+#
 
 clear
 echo

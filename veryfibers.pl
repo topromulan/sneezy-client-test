@@ -3,7 +3,7 @@
 # Turtle Shell SneezyMUD Client v2
 # You reconnected with negative hit points, automatic death RE-occurring.
 #
-# 2003-2009 Dale
+# Copyright(c) 2003-2009 Dale R. Anderson
 #
 
 my $turtlever = "0.0¹²³";

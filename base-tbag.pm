@@ -1,8 +1,14 @@
+#
+# TurtleShell v2
+# Copyright(c) 2003-2009 Dale R. Anderson
+#
 
 #######
 # a perl shell tbag leaf to...
 #
 #
+
+
 
 use pms::tmsg;
 use pms::argverify;

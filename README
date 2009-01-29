@@ -1,33 +1,34 @@
 
-Turtle Shell Testing Copy
+Turtle Shell v2 Testing Copy
 git@github.com:topromulan/sneezy-client-test.git
 
-By Dale Anderson
+Copyright(c) 2003-2009 By Dale R. Anderson
 
 #
 # Note: I'm not planning to use the forums, due to the recent 
 #  censorship by Pappy. 
-#   Glad you found this and contact me here or MUDMail Day in-game.
+#
+#   I'm glad you found this and contact me here or MUDMail to Day in-game
+#  if you would like to test or contribute.
 #
 
 
-This is the work in progress modularized SneezyMUD client.
-
-Required perl Modules:
- Net/Telnet
- Term/ReadKey
-
-
-This archive also contains a copy of the original monolithic script version (v1) for reference (or for playing.. it works great):
+This is the work in progress modularized SneezyMUD client. Testers would want to familiarize themselves with v1 which is included 
 
 	oldversion_ref_copy.pl
 
+For old version playing/learning or new version testing will be required some Perl Modules:
 
-For testing, launch testserver.sh in one window and run trycode.bat in another window.
+ Net/Telnet
+ Term/ReadKey
+
+This client makes no concessions for Windows users but I believe if you get Cygwin libraries installed on Windows and use the Cygwin terminal, it would play just fine with that. I'm willing to work with you to get that working, feel free to get in touch.
+
+For new version development testing, launch testserver.sh in one window and run trycode.bat in another window.
 
 Screenshot.png shows an example of using testserver.sh for testing
 
-For live testing and connect to the MUD execute ./trycode.bat live
+For live testing and connect to the MUD execute "./trycode.bat live"
 
 Adjust the squelch with #squelch for your level of playing or testing
 

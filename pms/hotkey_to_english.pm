@@ -1,3 +1,7 @@
+#
+# Turtle Shell SneezyMUD Client v2
+# Copyright(c) 2003-2009 Dale R. Anderson
+#
 
 
 # perl turtleshell hotkey_to_english
