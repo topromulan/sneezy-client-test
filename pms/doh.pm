@@ -36,7 +36,7 @@ sub doh_block {
 sub doh {
 	my $stuff = $_[0];
 
-	if ( $stuff =~ s/(\x1b\[[0-9]+;[0-9]+r)/\1/ )
+	if ( $stuff =~ s/(\x1b\[[0-9]+;[0-9]+r)/$1/ )
 	#this is vt100 scrolling area setup
 	{
 		my $setup = $1;

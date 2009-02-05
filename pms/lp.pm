@@ -15,6 +15,8 @@ use pms::argverify;
 
 use pms::sneezy;
 
+use pms::turtle_processor;
+
 tmsg "lp init", -2;
 
 # increment recursion
@@ -35,6 +37,8 @@ tmsg "lp init", -2;
 use pms::lp::ntc; #number times command
 use pms::lp::scs; #semi colon split
 use pms::lp::csv; #comma seperated values
+
+use pms::lp::ap; #alias processor
 
 my $lp_recursion = 0;
 my $lp_recursion_limit = 15;
@@ -77,6 +81,7 @@ sub lp {
 
 		#check for # 'turtle' command
 		if($arg =~ m/^#/) {
+			tmsg "about to execute $arg",1;
 			turtle_processor($arg);
 			last LPBLOCK;
 		}
@@ -99,7 +104,18 @@ sub lp {
 			last LPBLOCK;
 		}
 
-		#generic case
+		#handle aliases
+		if(is_alias($arg)) {
+
+			ap($arg);
+			last LPBLOCK;
+
+
+		}
+
+		#handle variables
+
+		#generic unhandled case
 		{
 			push @lp_command_stack, $arg;
 			last LPBLOCK;

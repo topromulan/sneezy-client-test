@@ -1,8 +1,12 @@
+#
+# Turtle Shell SneezyMUD Client v2
+# Copyright(c) 2003-2009 Dale R. Anderson
+#
 
 
 
 #######
-# a perl shell module to...
+# a perl shell module to split commands on semi colons
 #
 #
 

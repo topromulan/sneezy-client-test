@@ -6,7 +6,7 @@
 
 
 #######
-# The #alias Command
+# The #alias Command for adding aliases
 #
 #	Syntax: #alias <alias> <...>
 #
@@ -24,7 +24,6 @@
 #  are we going to add a method to add handlers to LP, and this module should 
 #    define the hash and add the handler?
 
-my $AliasHashPtr;
 
 use pms::tmsg;
 
@@ -32,25 +31,26 @@ tmsg "#alias Command loading", -2;
 
 #...
 
+$cmd_syntax = "Write command syntax for #alias..";
 
 sub tcmd_alias
 {
 	tmsg "TC #alias called with @_";
 
+	#must have at least 2 args..
+	if($#_ < 1) {
+		tmsg $cmd_syntax, 2;
+		return;
+	}
+
+	#ok.. alias_add() will error out if invalid
 	
+	my $aname = $_[0];		#The first argument
+	my $aval = "@_[1..$#_]"; 	#The rest, stuck into a string
 
-}
+	tmsg "tcmd_alias_add(): Now $aname is being aliased to '$aval'!", 1;
 
-sub tcmd_alias_add
-{
-	return unless argverify(\@_, 2, "tcmd takes 2 args..");
-
-	#****do any validation of arg name here
-	#
-
-	tmsg "Now $_[0] is being aliased to '$_[1]'!", 1;
-	
-	AliasHashPtr{@_[0]} = @_[1];
+	alias_add($aname, $aval);
 
 
 }

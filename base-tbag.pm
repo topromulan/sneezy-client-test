@@ -13,9 +13,9 @@
 use pms::tmsg;
 use pms::argverify;
 
-tmsg "YourFunctionHere init", -2;
-
 #...
+
+$cmd_syntax = "Write command syntax for #YourFunctionHere"
 
 sub tcmd_YourFunctionHere {
 
