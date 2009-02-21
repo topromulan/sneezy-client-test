@@ -24,7 +24,7 @@ For old version playing/learning or new version testing will be required some Pe
 
 The Turtle Shell client makes no concessions for Windows users; but I believe if you get Cygwin libraries installed on Windows and use the Cygwin terminal, it would play just fine with that. I'm willing to work with you to get that working - feel free to get in touch.
 
-I intend to split this project at some point for the Sneezy Client to use Sneezy Client codes directly and be a general shell on the other fork.
+I intend to split this project at some point for the Sneezy Client to use Sneezy Client codes directly and be a general Perl shell framework on the other fork.
 
 For new version development testing, launch testserver.sh in one window and run trycode.bat in another window.
 
