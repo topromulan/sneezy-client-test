@@ -22,9 +22,10 @@ sub is_alias {
 
 
 	#chop off the command word in case we were passed a whole line
-	$_[0] =~ m/^([a-z1-9]+)/i;
+	$_[0] =~ m/^([a-z1-9]*)/i;
 
 	$question = $1;
+
 
 
 	return 1 if defined($AliasHash{$question});
