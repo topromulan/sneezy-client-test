@@ -31,6 +31,8 @@ For live testing and connect to the MUD execute "./trycode.bat live"
 
 Adjust the squelch with #squelch for your level of playing or testing
 
+The test server is just a shell script using tcputils, got out of Ubuntu repositories as package just that (tcputils), looks like http://freshmeat.net/projects/tcputils
+
 
 #
 # "Be excellent to each other. And, ..
